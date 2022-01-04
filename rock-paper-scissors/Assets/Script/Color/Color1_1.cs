@@ -7,19 +7,19 @@ public class Color1_1 : MonoBehaviour
     public GameObject a;
     bool ok;
     private void Update() {
-        if(player.rand == 1) GetComponent<Image>().color = new Color(255/255f, 255/255f, 151/255f, 255/255f);
-        //if(a.transform.position == new Vector3(-2.31f, 2.31f, 0)) ok = true;
-        //else{
-        //    ok = false;
-        //    GetComponent<Image>().color = new Color(149/255f, 149/255f, 149/255f, 255/255f);
-       // }
+        //if(player.rand == 1) GetComponent<Image>().color = new Color(255/255f, 255/255f, 151/255f, 255/255f);
+        if(a.transform.position == new Vector3(-2.31f, 2.31f, 0)) ok = true;
+        else{
+            ok = false;
+            GetComponent<Image>().color = new Color(149/255f, 149/255f, 149/255f, 255/255f);
+        }
     }
 
     // 네모 위에 올라왔을 시 색상 변함
-   // private void OnTriggerEnter2D(Collider2D other) {
-   //     if(ok == true){
-   //         GetComponent<Image>().color = new Color(255/255f, 160/255f, 160/255f, 255/255f);
-   //     }
-   // }
+   private void OnTriggerEnter2D(Collider2D other) {
+        if(ok == true){
+            GetComponent<Image>().color = new Color(255/255f, 160/255f, 160/255f, 255/255f);
+        }
+    }
 }
 
