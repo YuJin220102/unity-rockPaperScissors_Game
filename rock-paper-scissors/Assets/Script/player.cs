@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 public class player : MonoBehaviour
 {
-    // rock, scissors, paper - rand position
-    static public int[,] test = new int[3, 2];
-
+    bool test2;
+    // rock, paper, scissors - rand position
+    static public int[] rand = new int[3];
+    // Representative, rock-paper-scissors
+    static public int Rptrand;
     // timer
-    float timer = 0;
+    static public float timer = 0;
     static public float time = 5f;
+    static public float RPStime = 4.8f;
+    static public float timer2 = 0;
 
     // Move
     static public float left;
@@ -19,7 +23,8 @@ public class player : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        test2 = false;
         left = 0.77f;
         right = 0.77f;
         up = 0.77f;
@@ -30,44 +35,27 @@ public class player : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        //timer2 += Time.deltaTime;
+        //if(RPStime < timer2){
+        //    Rptrand = Random.Range(0,3);
+        //    Color1_1.ok = false;
+        //}
         if(time < timer){
-
-            // random position
+            Color1_1.ok = true;
+            // 묵 찌 빠 랜덤 값 넣고
             for(int i = 0; i < 3; i++){
-                for(int j = 0; j < 2; j++){
-                    test[i,j] = Random.Range(0, 7);
-                    }
-                }
-            //To prevent overlapping // ?? 하는중.............
-            
-            if(test[0,1] > 0 && test[0,1] < 6){
-                if(test[0,0] > 0 && test[0,0] < 6){
-                    test[0, 0] = 0;
-                }
+                Rptrand = Random.Range(0,3);
+                rand[i] = Random.Range(0,24);
             }
-            
-            // if(test[0,0] == test[1,0]){
-            //     if(test[0,1] == test[1,1]){
-            //         test[0,1] = Random.Range(0, 7);
-            //     }
-            // }
-            // if(test[0,0] == test[2,0]){
-            //     if(test[0,1] == test[2,1]){
-            //         test[0,1] = Random.Range(0, 7);
-            //     }
-            // } 
-            // if(test[1,0] == test[2,0]){
-            //     if(test[1,1] == test[2,1]){
-            //         test[1,1] = Random.Range(0, 7);
-            //     }
-            // } 
-
-            Debug.Log("1 : " + test[0,0] + " " + test[0,1]);
-            Debug.Log("2 : " + test[1,0] + " " + test[1,1]);
-            Debug.Log("3 : " + test[2,0] + " " + test[2,1]);
-
+            while(test2 == true){
+                test();
+            }
+            Debug.Log("1 : "+ rand[0]);
+            Debug.Log("2 : "+ rand[1]);
+            Debug.Log("3 : "+ rand[2]);
             timer = 0;
         }
+            // 위치 겹침 방지
         Move();
     }
     
@@ -83,6 +71,18 @@ public class player : MonoBehaviour
         }
     if(Input.GetKeyDown(KeyCode.S)){
         transform.Translate(0, -down, 0);
+        }
+    }
+
+    public void test(){
+        if((rand[0] == rand[1]) || (rand[0] == rand[2]) || (rand[1] == rand[2])){
+            test2 = false;
+            rand[0] = Random.Range(0,24);
+            rand[1] = Random.Range(0,24);
+            rand[2] = Random.Range(0,24);
+        }
+        if((rand[0] != rand[1]) || (rand[0] != rand[2]) || (rand[1] != rand[2])){
+            test2 = true;
         }
     }
 }
