@@ -33,7 +33,7 @@ public class Color1_5 : MonoBehaviour
            }
            if(player.Rptrand == 2){
                GetComponent<Image>().color = new Color(98/255f, 225/255f, 255/255f, 255/255f);
-               player.timer += 4f;
+                player.time = 1f;
                 player.timer2 += 4f;
                Debug.Log("이김");
            }
@@ -42,7 +42,7 @@ public class Color1_5 : MonoBehaviour
        if(player.rand[1] == 4){
            if(player.Rptrand == 0){
                GetComponent<Image>().color = new Color(98/255f, 225/255f, 255/255f, 255/255f);
-               player.timer += 4f;
+                player.time = 1f;
                 player.timer2 += 4f;
                Debug.Log("이김");
            }
@@ -63,7 +63,7 @@ public class Color1_5 : MonoBehaviour
            }
            if(player.Rptrand == 1){
                GetComponent<Image>().color = new Color(98/255f, 225/255f, 255/255f, 255/255f);
-               player.timer += 4f;
+                player.time = 1f;
                 player.timer2 += 4f;
                Debug.Log("이김");
            }

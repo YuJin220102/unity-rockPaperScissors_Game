@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class player : MonoBehaviour
 {
-    bool test2;
     // rock, paper, scissors - rand position
     static public int[] rand = new int[3];
     // Representative, rock-paper-scissors
@@ -24,38 +23,31 @@ public class player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        test2 = false;
-        left = 0.77f;
-        right = 0.77f;
-        up = 0.77f;
-        down = 0.77f;
+        left = 0.8f;
+        right = 0.8f;
+        up = 0.8f;
+        down = 0.8f;
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        //timer2 += Time.deltaTime;
-        //if(RPStime < timer2){
-        //    Rptrand = Random.Range(0,3);
-        //    Color1_1.ok = false;
-        //}
-        if(time < timer){
-            Color1_1.ok = true;
-            // 묵 찌 빠 랜덤 값 넣고
-            for(int i = 0; i < 3; i++){
-                Rptrand = Random.Range(0,3);
-                rand[i] = Random.Range(0,24);
-            }
-            while(test2 == true){
-                test();
-            }
-            Debug.Log("1 : "+ rand[0]);
-            Debug.Log("2 : "+ rand[1]);
-            Debug.Log("3 : "+ rand[2]);
-            timer = 0;
+        if((time - 0.01f) < timer){
+            ColorTEST.ok = false;
         }
-            // 위치 겹침 방지
+        if(time < timer){
+            ColorTEST.ok = true;
+            Rptrand = Random.Range(0,3);
+
+            // 랜덤 위치 값 넣고 위치 겹침 방지
+            // Random location and overlap prevention
+            PositionCheck(Random.Range(0,24), Random.Range(0,24), Random.Range(0,24));
+
+            timer = 0;
+            time = 5f;
+        }
+
         Move();
     }
     
@@ -74,15 +66,20 @@ public class player : MonoBehaviour
         }
     }
 
-    public void test(){
+    public void PositionCheck(int a, int b, int c){
+        rand[0] = a; // rock
+        rand[1] = b; // paper
+        rand[2] = c; // scissors
+
+        // 위치 겹칠 시
+        // positions overlap
         if((rand[0] == rand[1]) || (rand[0] == rand[2]) || (rand[1] == rand[2])){
-            test2 = false;
-            rand[0] = Random.Range(0,24);
-            rand[1] = Random.Range(0,24);
-            rand[2] = Random.Range(0,24);
+            PositionCheck(Random.Range(0,24), Random.Range(0,24), Random.Range(0,24));
         }
-        if((rand[0] != rand[1]) || (rand[0] != rand[2]) || (rand[1] != rand[2])){
-            test2 = true;
+        // 위치 겹치지 않을 시
+        // doesn't overlap
+        if((rand[0] != rand[1]) && (rand[0] != rand[2]) && (rand[1] != rand[2])){
+            return;
         }
     }
 }
