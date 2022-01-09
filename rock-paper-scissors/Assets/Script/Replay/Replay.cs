@@ -76,6 +76,9 @@ public class Replay : MonoBehaviour
         // 색상 회색으로 변경
         ChangeColor.ok = false;
 
+        // 장애물 색상 변경
+        GameObject.Find("Image"+player.Obs).GetComponent<Image>().color = new Color(82/255f, 82/255f, 82/255f, 255/255f); 
+
         // 게임화면으로 돌아감
         ON(GameCG);
         OFF2(ReplayCG);

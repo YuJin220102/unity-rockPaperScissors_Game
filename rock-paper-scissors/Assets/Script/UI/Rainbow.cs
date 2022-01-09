@@ -21,7 +21,6 @@ public class Rainbow : MonoBehaviour
             }
             if(Mathf.Floor(time1) <= 1f){
                 count++;
-                Debug.Log(count);
             }
         }
         if(count == 1){
@@ -32,7 +31,6 @@ public class Rainbow : MonoBehaviour
             if(Mathf.Floor(time2) >= 254f){
                 count++;
                 time1 = 255f;
-                Debug.Log(count);
             }
         }
         if(count == 2){
@@ -43,7 +41,6 @@ public class Rainbow : MonoBehaviour
             if(Mathf.Floor(time1) <= 1f){
                 count++;
                 time2 = 0; 
-                Debug.Log(count);
             }
         }
         if(count == 3){
@@ -54,7 +51,6 @@ public class Rainbow : MonoBehaviour
             if(Mathf.Floor(time2) >= 254f){
                 count++;
                 time1 = 255f;
-                Debug.Log(count);
             }
         }
         if(count == 4){
@@ -65,7 +61,6 @@ public class Rainbow : MonoBehaviour
             if(Mathf.Floor(time1) <= 1f){
                 count++;
                 time2 = 0; 
-                Debug.Log(count);
             }
         }
         if(count == 5){
@@ -77,7 +72,6 @@ public class Rainbow : MonoBehaviour
                 count = 0;
                 time1 = 255f;
                 time2 = 0f;
-                Debug.Log(count);
             }
         }
 

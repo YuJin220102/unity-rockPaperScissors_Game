@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class player : MonoBehaviour
 {
+    static public int Obs; 
     public GameObject text;
     public GameObject rock;
     public GameObject paper;
@@ -49,6 +50,7 @@ public class player : MonoBehaviour
             // 랜덤 위치 값 넣고 위치 겹침 방지
             // Random location and overlap prevention
             PositionCheck(Random.Range(0,20), Random.Range(0,20), Random.Range(0,20));
+            Obs = Random.Range(0,25);
 
             timer = 0;
             time = 5f;

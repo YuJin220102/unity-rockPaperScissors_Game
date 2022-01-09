@@ -30,6 +30,11 @@ public class ChangeColor : MonoBehaviour
                GameObject.Find(player.rand[0].ToString()).GetComponent<Image>().color = new Color(149/255f, 149/255f, 149/255f, 255/255f);
                GameObject.Find(player.rand[1].ToString()).GetComponent<Image>().color = new Color(149/255f, 149/255f, 149/255f, 255/255f);
                GameObject.Find(player.rand[2].ToString()).GetComponent<Image>().color = new Color(149/255f, 149/255f, 149/255f, 255/255f);
+               
+               // 장애물 생상 기본 색상으로 변경, 콜라이더 해제
+               GameObject.Find("Image"+player.Obs).GetComponent<Image>().color = new Color(82/255f, 82/255f, 82/255f, 255/255f); 
+               GameObject.Find("Image"+player.Obs).GetComponent<BoxCollider2D>().enabled = false;
+
                player.time = 2f;
                pass = false;
            }
