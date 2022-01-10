@@ -4,30 +4,65 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Obstacle : MonoBehaviour
 {
-    // float[,] Obstacle_position = new float[25,2] {{-1.6f, 1.6f},{-1.6f, 0.8f},{-1.6f, 0f},{-1.6f, -0.8f},
-    // {-1.6f, -1.6f},{0.8f, 1.6f},{0.8f, 0.8f},{0.8f, 0f},{0.8f, -0.8f},{0.8f, -1.6f},{0f, 1.6f},{0f, 0.8f}
-    // ,{0f, 0f},{0f, -0.8f},{0f, -1.6f},{-0.8f, 1.6f},{-0.8f, 0.8f},{-0.8f, 0f},{-0.8f, -0.8f},{-0.8f, -1.6f}
-    // ,{-1.6f, 1.6f},{-1.6f, 0.8f},{-1.6f, 0f},{-1.6f, -0.8f},{-1.6f, -1.6f}};
-    float time = 5f;
-    float timer = 0f;
-    // int rand_x, rand_y, rand;
-    int rand;
-    int count = 0;
-
+    int[] rsZone = new int[5];
+    int[] sfZone = new int[5];
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Image0").GetComponent<BoxCollider2D>().enabled = false;
-        GameObject.Find("Image0").GetComponent<Image>().color = new Color(82/255f, 82/255f, 82/255f, 255/255f); 
+
     }
 
     // Update is called once per frame
     void Update()
     {
-            GameObject.Find("Image"+player.Obs).GetComponent<BoxCollider2D>().enabled = true;
-            GameObject.Find("Image"+player.Obs).GetComponent<Image>().color = new Color(255/255f, 74/255f, 74/255f, 255/255f);
+        if(player.count == 1){
+            rsZone[player.count - 1] = player.risk;
+            GameObject.Find("Image"+rsZone[0]).GetComponent<BoxCollider2D>().enabled = true;
+            GameObject.Find("Image"+rsZone[0]).GetComponent<Image>().color = new Color(255/255f, 74/255f, 74/255f, 255/255f);
 
-           // GameObject.Find("Image"+rand).GetComponent<BoxCollider2D>().enabled = false;
-            //GameObject.Find("Image"+rand).GetComponent<Image>().color = new Color(149/255f, 149/255f, 149/255f, 255/255f); 
+            sfZone[player.count - 1] = player.Safety;
+            GameObject.Find("Image"+sfZone[0]).GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("Image"+sfZone[0]).GetComponent<Image>().color = new Color(85/255f, 255/255f, 50/255f, 255/255f);
+        }
+        
+        if(player.count == 2){
+            rsZone[player.count - 1] = player.risk; 
+            GameObject.Find("Image"+rsZone[1]).GetComponent<BoxCollider2D>().enabled = true;
+            GameObject.Find("Image"+rsZone[1]).GetComponent<Image>().color = new Color(255/255f, 74/255f, 74/255f, 255/255f);
+
+            sfZone[player.count - 1] = player.Safety;
+            GameObject.Find("Image"+sfZone[1]).GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("Image"+sfZone[1]).GetComponent<Image>().color = new Color(85/255f, 255/255f, 50/255f, 255/255f);
+        }
+
+        if(player.count == 3){
+            rsZone[player.count - 1] = player.risk; 
+            GameObject.Find("Image"+rsZone[2]).GetComponent<BoxCollider2D>().enabled = true;
+            GameObject.Find("Image"+rsZone[2]).GetComponent<Image>().color = new Color(255/255f, 74/255f, 74/255f, 255/255f);
+
+            sfZone[player.count - 1] = player.Safety;
+            GameObject.Find("Image"+sfZone[2]).GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("Image"+sfZone[2]).GetComponent<Image>().color = new Color(85/255f, 255/255f, 50/255f, 255/255f);
+        }
+
+        if(player.count == 4){
+            rsZone[player.count - 1] = player.risk; 
+            GameObject.Find("Image"+rsZone[3]).GetComponent<BoxCollider2D>().enabled = true;
+            GameObject.Find("Image"+rsZone[3]).GetComponent<Image>().color = new Color(255/255f, 74/255f, 74/255f, 255/255f);
+
+            sfZone[player.count - 1] = player.Safety;
+            GameObject.Find("Image"+sfZone[3]).GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("Image"+sfZone[3]).GetComponent<Image>().color = new Color(85/255f, 255/255f, 50/255f, 255/255f);
+        }
+
+        if(player.count == 5){
+            rsZone[player.count - 1] = player.risk; 
+            GameObject.Find("Image"+rsZone[4]).GetComponent<BoxCollider2D>().enabled = true;
+            GameObject.Find("Image"+rsZone[4]).GetComponent<Image>().color = new Color(255/255f, 74/255f, 74/255f, 255/255f);
+
+            sfZone[player.count - 1] = player.Safety;
+            GameObject.Find("Image"+sfZone[4]).GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("Image"+sfZone[4]).GetComponent<Image>().color = new Color(85/255f, 255/255f, 50/255f, 255/255f);
+        }
     }
 }

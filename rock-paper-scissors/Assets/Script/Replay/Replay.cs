@@ -77,7 +77,11 @@ public class Replay : MonoBehaviour
         ChangeColor.ok = false;
 
         // 장애물 색상 변경
-        GameObject.Find("Image"+player.Obs).GetComponent<Image>().color = new Color(82/255f, 82/255f, 82/255f, 255/255f); 
+        for(int i = 0; i < 25; i++){
+            GameObject.Find("Image" + i).GetComponent<BoxCollider2D>().enabled = false;
+            GameObject.Find("Image" + i).GetComponent<Image>().color = new Color(82/255f, 82/255f, 82/255f, 255/255f); 
+        }
+        player.count = 0;
 
         // 게임화면으로 돌아감
         ON(GameCG);

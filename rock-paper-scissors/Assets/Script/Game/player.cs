@@ -4,7 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class player : MonoBehaviour
 {
-    static public int Obs; 
+    // 위험 존
+    static public int risk; 
+    static public int count;
+    
+    // 안전 존
+    static public int Safety;
+
+    // 가위바위보 오브젝트
     public GameObject text;
     public GameObject rock;
     public GameObject paper;
@@ -35,25 +42,50 @@ public class player : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if((time - 0.01f) < timer){
-            ChangeColor.ok = false;
-        }
+  
         if(time < timer){
+
+            // 레벨 이상일 때부터 장애물 시작
+            if(Level.num1 >= 3){
+                // 랜덤 장애물 생성
+                if(count > 0 && count < 6){
+                    Safety_risk(Random.Range(0,25), Random.Range(0,25));
+                }
+                count++;
+                if(count >= 6){
+                    // 한단계 올라갈때마다 초기화
+                    for(int i = 0; i < 25; i++){
+                        GameObject.Find("Image" + i).GetComponent<BoxCollider2D>().enabled = false;
+                        GameObject.Find("Image" + i).GetComponent<Image>().color = new Color(82/255f, 82/255f, 82/255f, 255/255f); 
+                    }
+                    count = 0;
+                }
+            }
+
+            // 가위바위보 접촉 하지 않았을 때
+            ChangeColor.ok = false;
+
+            // "?" 텍스트 false
             text.SetActive(false);
+            // 가위바위보 보여줌
             rock.SetActive(true);
             paper.SetActive(true);
             scissors.SetActive(true);
 
             ChangeColor.ok = true;
+            // 컴퓨터 랜덤 가위바위보
             Rptrand = Random.Range(0,3);
 
-            // 랜덤 위치 값 넣고 위치 겹침 방지
+            // 0 Collider is running.
+            GameObject.Find("0").GetComponent<BoxCollider2D>().enabled = true;
+
+            // 플레이어 가위바위보 랜덤 위치 값 넣고 위치 겹침 방지
             // Random location and overlap prevention
             PositionCheck(Random.Range(0,20), Random.Range(0,20), Random.Range(0,20));
-            Obs = Random.Range(0,25);
-
+        
             timer = 0;
             time = 5f;
+            
         }
         Move();
     }
@@ -86,6 +118,19 @@ public class player : MonoBehaviour
         // 위치 겹치지 않을 시
         // doesn't overlap
         if((rand[0] != rand[1]) && (rand[0] != rand[2]) && (rand[1] != rand[2])){
+            return;
+        }
+    }
+
+    public void Safety_risk(int a, int b){
+        Safety = a;
+        risk = b;
+
+        if(Safety == risk){
+            Safety_risk(Random.Range(0,25), Random.Range(0,25));
+        }
+
+        if(Safety != risk){
             return;
         }
     }
